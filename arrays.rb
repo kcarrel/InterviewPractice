@@ -57,10 +57,26 @@ def remove_duplicates(nums)
     return if nums.length == 0
     ##iterate through with index
     nums.each_with_index do |number, index|
-    # check duplicate and assign nil for later deletion 
+    # check duplicate and assign nil for later deletion
         if number == nums[index + 1]
             nums[index] = nil
         end
     end
     nums.delete(nil)
+end
+
+
+def is_palindrome(s)
+  ## sanitize the string
+  s = s.gsub(/[^a-zA-Z\d]/, "").downcase
+  i = 0
+  j = s.length - 1
+  #iterate through from start and end pointers to compare characters
+  while i < j
+    return false if s[i] != s[j]
+    i += 1
+    j -= 1
+  end
+
+  true
 end
