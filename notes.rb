@@ -28,33 +28,8 @@ def first_uniq_char(s)
     end
 end
 
-def length_of_longest_substring(s)
-  return 0 if s.length == 0
-  h = {}
-  max = 0
-  start = 0
 
-  0.upto(s.length - 1) do |i|
-    if h.key? s[i]
-      start = [start, h[s[i]] + 1].max
-    end
-    h[s[i]] = i
-    max = [max, i-start + 1].max
-  end
-  max
-end
 
-## remove duplicates by assigning duplicates to nil then deleting all nil values
-
-def remove_duplicates(nums)
-    return if nums.length == 0
-    nums.each_with_index do |number, index|
-        if number == nums[index + 1]
-            nums[index] = nil
-        end
-    end
-    nums.delete(nil)
-end
 
 ##best time to buy and sell
 
