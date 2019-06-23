@@ -25,6 +25,28 @@ def two_sum(nums, target)
     end
 end
 
+# Reverse a string in-place (do not allocate new memory for a string)
+
+def reverse_string(s)
+    #beginning pointer
+    start = 0
+    #end pointer
+    finish =   s.length - 1
+    # go through and switch s[]
+    while start < finish
+      #make a temporary of the last examined end pointer char
+        temp = s[finish]
+        # assign start to finish
+        s[finish] = s[start]
+        # set start to the saved temp (end pointer)
+        s[start] = temp
+        # move further into the string by adding/subtracting to pointers
+        start += 1
+        finish -= 1
+    end
+    s
+end
+
 #Longest substring without repeating characters
 def length_of_longest_substring(s)
   ##immediately catch empty Strings
@@ -65,7 +87,7 @@ def remove_duplicates(nums)
     nums.delete(nil)
 end
 
-
+#check to see if a string can be a palindrome (ignoring punctuation)
 def is_palindrome(s)
   ## sanitize the string
   s = s.gsub(/[^a-zA-Z\d]/, "").downcase
@@ -79,4 +101,17 @@ def is_palindrome(s)
   end
 
   true
+end
+
+## check to see what number in an array (0,1...n) is missing
+def missing_number(nums)
+  #calculate the total expected for the array based on length
+    total = (nums.length)*(nums.length + 1)/2
+    sum = 0
+    #go through each number in array and add to sum
+    nums.each do |number|
+        sum += number
+    end
+    #subtract sum from total to find the missing number
+    return total - sum
 end

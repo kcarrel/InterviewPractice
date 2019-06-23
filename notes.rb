@@ -145,19 +145,6 @@ def reverse_list(head)
     return reversed
 end
 
-def is_palindrome(s)
-  s = s.gsub(/[^a-zA-Z\d]/, "").downcase
-  i = 0
-  j = s.length - 1
-  while i < j
-    return false if s[i] != s[j]
-    i += 1
-    j -= 1
-  end
-
-  true
-end
-
 # Definition for singly-linked list.
 # class ListNode
 #     attr_accessor :val, :next
@@ -191,13 +178,4 @@ def remove_nth_from_end(head, n)
     return head.next if count == n
     p.next = p.next.next
     head
-end
-
-def missing_number(nums)
-    total = (nums.length)*(nums.length + 1)/2
-    sum = 0
-    nums.each do |number|
-        sum += number
-    end
-    return total - sum
 end
