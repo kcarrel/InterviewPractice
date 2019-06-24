@@ -179,3 +179,108 @@ def remove_nth_from_end(head, n)
     p.next = p.next.next
     head
 end
+
+class MinStack
+
+=begin
+    initialize your data structure here.
+=end
+    def initialize()
+        @min = []
+        @stack = []
+    end
+
+
+=begin
+    :type x: Integer
+    :rtype: Void
+=end
+    def push(x)
+        @stack.push(x)
+        if @min.empty? || x <= @min[-1]
+            @min.push(x)
+        end
+    end
+
+
+=begin
+    :rtype: Void
+=end
+    def pop()
+        if @stack[-1] == @min[-1]
+            @min.pop()
+        end
+        @stack.pop()
+    end
+
+
+=begin
+    :rtype: Integer
+=end
+    def top()
+        @stack[-1]
+    end
+
+
+=begin
+    :rtype: Integer
+=end
+    def get_min()
+        @min[-1]
+    end
+
+
+end
+
+# Your MinStack object will be instantiated and called as such:
+# obj = MinStack.new()
+# obj.push(x)
+# obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.get_min()
+
+def group_anagrams(strs)
+      strs.group_by { |s| s.chars.sort }.values.map(&:sort)
+end
+
+# Definition for a binary tree node.
+# class TreeNode
+#     attr_accessor :val, :left, :right
+#     def initialize(val)
+#         @val = val
+#         @left, @right = nil, nil
+#     end
+# end
+
+# @param {TreeNode} root
+# @return {Integer[][]}
+def level_order(root)
+    return [] if root.nil?
+    result = []
+    level_array = []
+    queue = [root]
+    i1 = 1
+    i2 = 0
+    while item = queue.shift do
+        i1 -= 1
+        level_array << item.val
+
+        if item.left
+            queue << item.left
+            i2 += 1
+        end
+
+        if item.right
+            queue << item.right
+            i2 += 1
+        end
+
+        if i1 == 0
+            result << level_array
+            level_array = []
+            i1 = i2
+            i2 = 0
+        end
+    end
+    result
+end
