@@ -284,3 +284,56 @@ def level_order(root)
     end
     result
 end
+
+
+##recursive solution for finding the range sum of a binary search TreeNode
+def range_sum_bst(root, l, r)
+    return 0 unless root
+
+    sum = (l <= root.val && root.val <= r) ? root.val : 0
+
+    return sum unless root.left || root.right
+
+    sum += range_sum_bst(root.left, l, r) if root.val > l
+    sum += range_sum_bst(root.right, l, r) if root.val < r
+
+    sum
+end
+
+
+##container with most water
+def max_area(height)
+    ##start with beginning and ending pointers
+    i = 0
+    j = height.length - 1
+    water = 0
+    while i < j
+        a = j - i
+        b = 0
+        if height[i] < height[j]
+            b = height[i]
+            i += 1
+        else
+            b = height[j]
+            j -= 1
+        end
+        w = a * b
+        water = w > water ? w : water
+    end
+    water
+end
+
+##faster runtime
+def max_area(array_list)
+    maxarea = 0
+    l, r, max_area = 0, array_list.length - 1, 0
+    while l < r
+        max_area = [max_area, [array_list[l], array_list[r]].min * (r - l)].max
+        if array_list[l] < array_list[r]
+            l += 1
+        else
+            r -= 1
+        end
+    end
+    return max_area
+end
