@@ -147,3 +147,16 @@ def is_power_of_two(n)
     end
     return i == n
 end
+
+#first unique char
+def first_uniq_char(s)
+    count = Hash.new(0)
+    s.chars.each do |letter|
+        count[letter] += 1
+    end
+    if count.value?(1)
+        return s.index(count.key(1))
+    else
+        return -1
+    end
+end

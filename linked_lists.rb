@@ -22,3 +22,32 @@ def merge_two_lists(l1, l2)
 			return l2;
     end
 end
+
+def merge_two_lists(l1, l2)
+# dummy node for merged list to build on
+   merged_list = ListNode.new(0)
+   current_node = merged_list
+   while !l1.nil? && !l2.nil?
+       if l1.val <= l2.val
+           current_node.next = l1
+           l1 = l1.next
+       else
+           current_node.next = l2
+           l2 = l2.next
+       end
+       current_node = current_node.next
+   end
+   # if you have broken the loop it means either l1 or l2 is nil
+   # check which and assign the
+   while !l1.nil?
+       current_node.next = l1
+       l1 = l1.next
+       current_node = current_node.next
+   end
+   while !l2.nil?
+       current_node.next = l2
+       l2 = l2.next
+       current_node = current_node.next
+   end
+   merged_list.next
+end
