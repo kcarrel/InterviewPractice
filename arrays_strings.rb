@@ -115,3 +115,26 @@ def missing_number(nums)
     #subtract sum from total to find the missing number
     return total - sum
 end
+
+#Kth largest element in an array
+#sort the array and return the kth to last number(this will be the kth largest element)
+#iterate through numbers placing each in a min heap
+#If the heap's size exceeds k, remove an element from the heap. After you'd iterated through all your numbers, the last k element in the array will be in the heap. Therefore, the kth largest thing will be at the root of the heap, so we return it.
+
+#o(n)
+def find_kth_largest(nums, k)
+
+end
+
+
+def first_uniq_char(s)
+    count = Hash.new(0)
+    s.chars.each do |letter|
+        count[letter] += 1
+    end
+    if count.value?(1)
+        return s.index(count.key(1))
+    else
+        return -1
+    end
+end
