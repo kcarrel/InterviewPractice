@@ -138,3 +138,12 @@ def first_uniq_char(s)
         return -1
     end
 end
+
+#Power of Two
+def is_power_of_two(n)
+   i = 1
+    while i < n
+        i *= 2
+    end
+    return i == n
+end
