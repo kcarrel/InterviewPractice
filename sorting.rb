@@ -105,3 +105,31 @@ def two_sum(numbers, target)
 
   arr
 end
+
+
+#Parity sort
+# Intuition behind solution:
+#Create an index that will store the next position to place an even number.
+#Iterate through the elements of A, checking if each element is even.
+#If the current element is even, store the number at the A[index] position as to not overwrite it without storing it, place the current element (A[index]) at the A[index] position, increment index, and place the temporarily stored value at the A[i] position. Once the loop terminates return A as you will have successfully bubbled all even elements to the front of the array and therefore all odd elements to the back of the array.
+
+def sort_array_by_parity(a)
+
+  l = 0
+  r = a.length - 1
+  i = 0
+
+  while i < a.length && i < r
+    if a[i] % 2 == 0
+      a[l], a[i] = a[i], a[l]
+      l +=1
+    else
+      a[r], a[i] = a[i], a[r]
+      r -= 1
+    end
+    if a[i] % 2 == 0
+      i += 1
+    end
+  end
+  a
+end
