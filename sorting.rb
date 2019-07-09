@@ -106,6 +106,21 @@ def two_sum(numbers, target)
   arr
 end
 
+# @param {Integer[]} nums
+# @return {Void} Do not return anything, modify nums in-place instead.
+def move_zeroes(nums)
+    index = 0
+    i = 0
+    while i < nums.length
+        if nums[i] != 0
+            temp =  nums[index]
+            nums[index] = nums[i]
+            index += 1
+            nums[i] = temp
+        end
+        i += 1
+    end
+end
 
 #Parity sort
 # Intuition behind solution:

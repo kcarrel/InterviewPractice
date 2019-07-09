@@ -160,3 +160,33 @@ def first_uniq_char(s)
         return -1
     end
 end
+
+
+## Google mock interview
+def metathesis(word1, word2)
+  ##catch mismatched lengths, same word cases or empty input
+  return false if word1.length != word2.length || word1 == word2 || word1 == nil || word2 == nil
+  wordHash1 = Hash.new
+  word1.chars.each_with_index do |letter, index|
+    wordHash1[index] = letter
+  end
+  wordHash2 = Hash.new
+  word2.chars.each_with_index do |letter, index|
+    wordHash2[index] = letter
+  end
+  switch = 0
+  i = 0
+  index = 0
+  flag = ''
+  while i < word1.length
+    if wordHash1[i] != wordHash2[i] && flag == ''
+      flag = wordHash1[i]
+      index = i
+    elsif wordHash1[i] != wordHash2[i] && wordHash2[i] == flag
+      switch += 1
+    end
+    i += 1
+  end
+  return true if i == 1
+  return false
+end
