@@ -126,6 +126,17 @@ def find_kth_largest(nums, k)
 
 end
 
+def remove_outer_parentheses(s)
+    count = 0
+    output = []
+    s.split(//).each do |i|
+        output << i unless (count == 0 && i == "(") || (count == 1 && i == ")")
+        count += 1 if i == "("
+        count -= 1 if i == ")"
+    end
+    output.join
+end
+
 
 def first_uniq_char(s)
     count = Hash.new(0)
