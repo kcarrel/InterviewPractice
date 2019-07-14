@@ -15,3 +15,14 @@ def max_depth(root)
     end
     return count
 end
+
+#recursive solution for binary tree merge
+def merge_trees(t1, t2)
+    return t2 if t1 == nil
+    return t1 if t2 == nil
+    value = t1.val += t2.val
+    new = TreeNode.new(value)
+    new.left = merge_trees(t1.left, t2.left)
+    new.right = merge_trees(t1.right, t2.right)
+    return new
+end
