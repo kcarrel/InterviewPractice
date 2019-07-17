@@ -146,3 +146,25 @@ def sort_array_by_parity(a)
   end
   return a
 end
+
+# @param {Integer[]} a
+# @return {Integer[]}
+def sorted_squares(a)
+    result = []
+    i = 0
+    j = a.length - 1
+    k = j
+    while k >= 0
+        x = a[i] * a[i]
+        y = a[j] * a[j]
+        if x >= y
+            result[k] = x
+            i += 1
+        else
+            result[k] = y
+            j -= 1
+        end
+        k -= 1
+    end
+    return result
+end
