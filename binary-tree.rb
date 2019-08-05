@@ -26,3 +26,14 @@ def merge_trees(t1, t2)
     new.right = merge_trees(t1.right, t2.right)
     return new
 end
+
+#recursive solution
+def invert_tree(root)
+    return root if !root
+    result = TreeNode.new(root.val)
+    result.left = invert_tree(root.right)
+    result.right = invert_tree(root.left)
+    return result
+end
+
+#serialize and deserialize a binary Tree
