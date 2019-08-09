@@ -127,6 +127,25 @@ end
 #Create an index that will store the next position to place an even number.
 #Iterate through the elements of A, checking if each element is even.
 #If the current element is even, store the number at the A[index] position as to not overwrite it without storing it, place the current element (A[index]) at the A[index] position, increment index, and place the temporarily stored value at the A[i] position. Once the loop terminates return A as you will have successfully bubbled all even elements to the front of the array and therefore all odd elements to the back of the array.
+#Brute Force
+def sort_array_by_parity(a)
+    i = 0
+    j =  a.length - 1
+    while i < j
+        if a[i] % 2 > a[j] % 2
+            temp = a[i]
+            a[i] = a[j]
+            a[j] = temp
+        end
+        if a[i] % 2 == 0
+            i += 1
+        end
+        if a[j] % 2 == 1
+            j -= 1
+        end
+    end
+  return a
+end
 
 def sort_array_by_parity(a)
   # create an index to store next position of even number
