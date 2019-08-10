@@ -201,3 +201,23 @@ def metathesis(word1, word2)
   return true if i == 1
   return false
 end
+
+def plusMinus(arr)
+    storage = {
+        "positive" => 0,
+        "negative" => 0,
+        "zero" => 0
+    }
+    arr.each do |number|
+        if number == 0
+            storage["zero"] += 1.0
+        elsif number < 0
+            storage["negative"] += 1.0
+        else
+            storage["positive"] += 1.0
+        end
+    end
+    puts storage["positive"]/arr.length
+    puts storage["negative"]/arr.length
+    puts storage["zero"]/arr.length
+end
