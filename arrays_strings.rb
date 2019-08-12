@@ -221,3 +221,6 @@ def plusMinus(arr)
     puts storage["negative"]/arr.length
     puts storage["zero"]/arr.length
 end
+
+
+#sunday puzzle question
