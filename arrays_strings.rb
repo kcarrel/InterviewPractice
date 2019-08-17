@@ -154,6 +154,17 @@ def remove_outer_parentheses(s)
     output.join
 end
 
+#first attempt
+def remove_element(nums, val)
+    index = 0
+    nums.each do |number|
+        if number != val
+            nums[index] = number
+            index += 1
+        end
+    end
+    return index
+end
 
 def first_uniq_char(s)
     count = Hash.new(0)
