@@ -240,4 +240,23 @@ def plusMinus(arr)
 end
 
 
-#sunday puzzle question
+def max_area(height)
+    #start with beginning and ending pointers
+    i = 0
+    j = height.length - 1
+    water = 0
+    while i < j
+        a = j - i
+        b = 0
+        if height[i] < height[j]
+            b = height[i]
+            i += 1
+        else
+            b = height[j]
+            j -= 1
+        end
+        w = a * b
+        water = w > water ? w : water
+    end
+    water
+end
