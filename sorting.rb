@@ -187,3 +187,129 @@ def sorted_squares(a)
     end
     return result
 end
+
+
+
+def sort(numbers)
+    if numbers.size <= 1
+      return numbers
+    end
+
+    array_size   = numbers.size
+    half_of_size = (array_size / 2).round
+
+    left_array  = numbers.take(half_of_size)
+    right_array = numbers.drop(half_of_size)
+
+    sorted_left_array = sort(left_array)
+    sorted_right_array = sort(right_array)
+
+    merge(sorted_left_array, sorted_right_array)
+  end
+
+  # This then creates a new array, loops through the left/right arrays and places the lowest number into the array. 
+  def merge(left_array, right_array)
+    if right_array.empty?
+      return left_array # We have nothing to compare. Left wins.
+    end
+
+    if left_array.empty?
+      return right_array # We have nothing to compare. Right wins.
+    end
+
+    smallest_number = if left_array.first <= right_array.first
+      left_array.shift
+    else
+      right_array.shift
+    end
+
+    # We keep doing it until the left or right array is empty.
+    recursive = merge(left_array, right_array)
+
+    # Okay, either left or right array are empty at this point. So we have a result.
+    [smallest_number].concat(recursive)
+  end
+end
+
+
+def linear_search(array, key)
+  i = 0
+  while i < array.length
+      if array[i] == key
+        return "#{key} at index #{array.index(key)}"
+      end
+      i+=1
+    end
+    return -1
+end
+
+
+def binary_search(array, key)
+    low, high = 0, array.length - 1
+    while low <= high
+      mid = (low + high) >> 1
+      case key <=> array[mid]
+        when 1
+          low = mid + 1
+        when -1
+          high = mid - 1
+        else
+          return mid
+      end
+    end
+end
+
+def bfs(node)
+  queue = []
+  queue.push(node)
+
+  while(queue.size != 0)
+    n = queue.shift
+    puts n.value
+    n.children.each do |child|
+      queue.push(child)
+    end
+  end
+end
+
+def merge_sort(array)
+  if array.length <= 1
+    array
+  else
+    mid = (array.length / 2).floor
+    left = merge_sort(array[0..mid-1])
+    right = merge_sort(array[mid..array.length])
+    merge(left, right)
+  end
+end
+
+def merge(left, right)
+  if left.empty?
+    right
+  elsif right.empty?
+    left
+  elsif left[0] < right[0]
+    [left[0]] + merge(left[1..left.length], right)
+  else
+    [right[0]] + merge(left, right[1..right.length])
+  end
+end
+
+def quick_sort(array)
+  return array if array.length <= 1
+  pivot = array.delete_at(rand(array.length))
+
+  left = Array.new
+  right = Array.new
+
+  array.each do |x|
+    if x <= pivot
+      left << x
+    else
+      right << x
+    end
+  end
+
+  return *quick_sort(left), pivot ,*quick_sort(right)
+
+end

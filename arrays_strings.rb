@@ -287,3 +287,215 @@ def longest_common_prefix(strs)
         common_pre += c
     end
 end
+
+
+def majority_element(nums)
+  k = (nums.size)/2
+  hash = Hash.new(0)
+    nums.each do |num|
+        hash[num] += 1
+    end
+    hash.each { |key,value| return key if value > k }
+end
+
+def rotateImage(a)
+     n = a.size
+  last = n - 1
+  level = 0
+  while level < n / 2
+    (level..last-1).each do |i|
+      swap(a, [level, i], [i, last])
+      swap(a, [level, i], [last, last - i + level])
+      swap(a, [level, i], [last - i + level , level ])
+    end
+    level += 1
+    last -= 1
+  end
+  a
+end
+
+def swap(a, x, y)
+  tmp = a[x[0]][x[1]]
+  a[x[0]][x[1]] = a[y[0]][y[1]]
+  a[y[0]][y[1]] = tmp
+end
+
+
+def sudoku2(grid)
+cols = {}
+    boxes = {
+        1 => [],
+        2 => [],
+        3 => [],
+        4 => [],
+        5 => [],
+        6 => [],
+        7 => [],
+        8 => [],
+        9 => []
+    }
+    
+    # tests if the rows are valid and creates the cols and boxes
+    grid.each_with_index do |row, ind|
+        rownums = []
+        row.each_with_index do |num, idx|
+            
+            #makes sure num isn't "."
+            if num.to_i > 0
+                
+                rownums.push(num)
+                
+                # creates columns
+                if cols[idx]
+                    cols[idx] = cols[idx].push(num)
+                else
+                    cols[idx] = [num]
+                end
+
+
+                #creates boxes
+                if ind <= 2
+                    if idx <= 2
+                        boxes[1].push(num)
+                    elsif idx <= 5
+                        boxes[2].push(num)
+                    else
+                        boxes[3].push(num)
+                    end
+                elsif ind <= 5
+                    if idx <= 2
+                        boxes[4].push(num)
+                    elsif idx <= 5
+                        boxes[5].push(num)
+                    else
+                        boxes[6].push(num)
+                    end
+                else
+                    if idx <= 2
+                        boxes[7].push(num)
+                    elsif idx <= 5
+                        boxes[8].push(num)
+                    else
+                        boxes[9].push(num)
+                    end
+                end
+            end
+        end
+        
+        if rownums != rownums.uniq
+            return false
+        end
+    end
+    
+    # tests if the columns are valid
+    cols.each do |key, col|
+        if col != col.uniq
+            return false
+        end
+    end
+    
+    # tests if the boxes are valid
+    boxes.each do |key, box|
+        if box != box.uniq
+            return false
+        end
+    end
+    
+    return true
+end
+
+
+def isCryptSolution(crypt, solution)
+  newHash = Hash[solution.map {|x| x } ]
+  part1 = ""
+  part1 = crypttonum(crypt[0], newHash)
+  part2 = crypttonum(crypt[1], newHash)
+  part3 = crypttonum(crypt[2], newHash)
+  return false if ((part1[0] == "0" && part1.length > 1) || (part2[0] == "0" && part2.length > 1) || (part3[0] == "0" && part3.length > 1))
+  part1.to_i + part2.to_i == part3.to_i
+end
+
+def crypttonum(word, hash)
+  num = ""
+  word.chars.each{|x| 
+    num += hash[x]
+  }
+  num 
+end 
+
+def mutateTheArray(n, a)
+    b = []
+    if n == 1
+      b[0] = a[0]
+      return b
+    end
+    for i in 0..n-1
+        if i == 0
+            b[i] = 0 + a[i] + a[i + 1]
+        elsif i == n - 1
+          b[i] = a[i-1] + a[i] + 0
+        else 
+            b[i] = a[i-1] + a[i] + a[i + 1]
+        end
+    end
+    return b
+end
+
+def alternatingSort(a)
+    b = []
+    start = 0
+    finish = a.size - 1
+
+    while start <= finish do
+        if start == finish 
+            b << a[start]
+            break;
+        else
+            b << a[start]
+            b << a[finish]
+        end
+        start += 1
+        finish -= 1
+    end
+    print b
+    i = 0
+    while i < b.size-1 do
+        if b[i] >= b[i+1]
+            return false
+        end
+        i += 1
+    end
+    return true
+end
+
+
+def repeated_substring_pattern(s)
+    return false if s.empty?
+    return false if s.size == 1
+    (0...s.size/2).each do |i|
+        tmp = s[0..i]
+        if 0 == s.size%tmp.size
+            return true if s == tmp * (s.size/tmp.size)
+        end
+    end
+    false
+    
+end
+
+
+## Running sum 1
+
+def running_sum(nums)
+    result = []
+    count = 0 
+    while count < nums.length
+        if count == 0
+            result << nums[0]
+        else 
+            temp = result[count - 1] + nums[count]
+            result << temp
+        end
+        count += 1
+    end
+    return result
+end

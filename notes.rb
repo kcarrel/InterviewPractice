@@ -337,3 +337,48 @@ def max_area(array_list)
     end
     return max_area
 end
+
+def circleOfNumbers(n, firstNumber)
+    return (firstNumber+(n/2)) % n
+end
+
+
+def stringPermutations s
+  [].| s.chars.permutation.sort.map &:join
+end
+
+class Logger
+
+=begin
+    Initialize your data structure here.
+=end
+    def initialize()
+        @timestamps = Array.new(10){0}
+        @buckets = Array.new(10){Set.new}
+    end
+
+
+=begin
+    Returns true if the message should be printed in the given timestamp, otherwise returns false.
+        If this method returns false, the message will not be printed.
+        The timestamp is in seconds granularity.
+    :type timestamp: Integer
+    :type message: String
+    :rtype: Boolean
+=end
+    def should_print_message(timestamp, message)
+        i = timestamp % 10
+        if timestamp != @timestamps[i]
+            @buckets[i].clear()
+            @timestamps[i] = timestamp
+        end
+        (0...10).each do |j|
+            if timestamp - @timestamps[j] < 10 && @buckets[j].include?(message)
+                return false
+            end
+        end
+        
+        @buckets[i].add(message)
+        return true
+    end
+end
