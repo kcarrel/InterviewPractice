@@ -499,3 +499,14 @@ def running_sum(nums)
     end
     return result
 end
+
+# running sum 2
+def running_sum(nums)
+    result = []
+    sum = 0
+    nums.each do |num|
+        sum += num
+        result << sum
+    end 
+    return result 
+end
