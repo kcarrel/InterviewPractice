@@ -37,6 +37,32 @@ def contains_duplicate(nums)
     return false
 end
 
+# Number of Islands
+def depthSearch(grid, i, j) 
+    if i<grid.length and j <grid[0].length and i>=0 and j>=0 and grid[i][j] == '1'
+    grid[i][j] = '0'
+    depthSearch(grid,i+1,j)
+    depthSearch(grid,i,j+1)
+    depthSearch(grid,i-1,j)
+    depthSearch(grid,i,j-1)
+  end
+end 
+
+def num_islands(grid)
+    return 0 if !grid
+    output = 0
+    for i in 0...grid.length 
+        for j in 0...grid[i].length 
+            if grid[i][j] == '1'
+                output += 1
+                depthSearch(grid,i,j)
+            end
+        end                 
+    end
+    
+    return output
+end
+
 # Reverse a string in-place (do not allocate new memory for a string)
 
 def reverse_string(s)
