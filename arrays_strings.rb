@@ -25,6 +25,18 @@ def two_sum(nums, target)
     end
 end
 
+def contains_duplicate(nums)
+    hash = Hash.new
+    nums.each do |number|
+        if hash[number] 
+            return true 
+        else 
+            hash[number] = 1
+        end
+    end
+    return false
+end
+
 # Reverse a string in-place (do not allocate new memory for a string)
 
 def reverse_string(s)
