@@ -8,6 +8,32 @@ def add_two_numbers(l1, l2, carry = 0)
     end
 end
 
+def add_two_numbers(l1, l2)
+    c1 = l1
+    c2 = l2
+    list = ListNode.new(0);
+    head = list
+    sum = 0
+    while c1 || c2 
+        sum /= 10
+        if c1 
+            sum += c1.val
+            c1 = c1.next 
+        end
+        if c2 
+            sum += c2.val 
+            c2 = c2.next 
+        end
+        head.next = ListNode.new(sum % 10)
+        head = head.next
+    end 
+    sum /= 10
+    if sum == 1
+        head.next = ListNode.new(1)
+    end
+    return list.next
+end
+
 ##recursive solution for meging two linked lists
 def merge_two_lists(l1, l2)
 #catches fully merged lists of different size
