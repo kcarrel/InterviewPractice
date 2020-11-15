@@ -355,6 +355,27 @@ def majority_element(nums)
     hash.each { |key,value| return key if value > k }
 end
 
+
+## rotate an array k times 
+## second pass with reverse approach in place
+def reverse (nums, start, finish)
+    while start < finish do
+        temp = nums[start]
+        nums[start] = nums[finish]
+        nums[finish] = temp
+        start += 1
+        finish -= 1
+    end
+end
+
+def rotate(nums, k)
+    return nums if nums.length == 1
+   c = k % nums.length 
+    reverse(nums, 0, nums.length-1)
+    reverse(nums, 0, c -1)
+    reverse(nums, c, nums.length-1)
+end
+
 def rotateImage(a)
      n = a.size
   last = n - 1
