@@ -238,6 +238,25 @@ def first_uniq_char(s)
     end
 end
 
+#single-row keyboard
+#first pass with hash
+def calculate_time(keyboard, word)
+    keyboardHash = Hash.new(0)
+    keyboard.chars.each_with_index do |letter, index|
+        keyboardHash[letter] = index
+    end
+    output = 0
+    word.chars.each_with_index do |letter, index|
+        if index == 0 
+            output += keyboardHash[letter]
+        else 
+            diff = keyboardHash[letter] - keyboardHash[word[index-1]]
+            output += diff.abs
+        end
+    end
+    return output
+end
+
 
 ## Google mock interview
 def metathesis(word1, word2)
