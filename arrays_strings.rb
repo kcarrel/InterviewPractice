@@ -528,6 +528,20 @@ def crypttonum(word, hash)
   num 
 end 
 
+#move_zeroes
+def move_zeroes(nums)
+    pointer = 0
+    for i in 0...nums.length
+        if nums[i] != 0 
+            temp = nums[pointer]
+            nums[pointer] = nums[i]
+            pointer += 1
+            nums[i] = temp
+        end
+        i += 1
+    end
+end
+
 #Number of jewels in stones with hash
 def num_jewels_in_stones(j, s)
     jewelsHash = Hash.new
