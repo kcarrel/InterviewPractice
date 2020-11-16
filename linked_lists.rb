@@ -8,6 +8,13 @@ def add_two_numbers(l1, l2, carry = 0)
     end
 end
 
+def reverse_list(head, prev = nil)
+  return prev unless head
+  next_node = head.next
+  head.next = prev
+  reverse_list(next_node, head)
+end
+
 def add_two_numbers(l1, l2)
     c1 = l1
     c2 = l2
