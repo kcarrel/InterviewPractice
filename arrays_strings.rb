@@ -528,6 +528,21 @@ def crypttonum(word, hash)
   num 
 end 
 
+#Number of jewels in stones with hash
+def num_jewels_in_stones(j, s)
+    jewelsHash = Hash.new
+    j.chars do |jewel|
+        jewelsHash[jewel] = 1
+    end
+    output = 0 
+    s.chars do |stone|
+        if jewelsHash[stone] != nil
+            output += 1
+        end
+    end
+    return output
+end
+
 def mutateTheArray(n, a)
     b = []
     if n == 1
