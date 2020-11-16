@@ -382,3 +382,18 @@ class Logger
         return true
     end
 end
+
+
+#dp fib
+def fib(n)
+    return 0 if n.zero?
+    return 1 if 1 == n
+    a = 0
+    b = 1
+    value = 0
+    (2..n).each do |i|
+        value = a + b
+        a, b = b, value
+    end
+    value 
+end
