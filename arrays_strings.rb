@@ -483,6 +483,33 @@ cols = {}
 end
 
 
+## first pass at High Five 
+def topFive(arr)
+    sorted = arr.sort.slice(arr.length-5,arr.length)
+    
+    score = 0
+    sorted.each do |num|
+        score += num 
+    end
+    return score/5
+end
+
+def high_five(items)
+    studentHash = Hash.new []
+    items.each do |item|
+        studentHash[item[0]] += [item[1]]
+    end
+    output = []
+
+    studentHash.each do |hash|
+        output << [hash[0], topFive(hash[1])]
+    end
+
+    return output.sort_by{|k|k[0]}
+
+end
+
+
 def isCryptSolution(crypt, solution)
   newHash = Hash[solution.map {|x| x } ]
   part1 = ""
